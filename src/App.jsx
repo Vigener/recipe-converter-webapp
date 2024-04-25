@@ -6,8 +6,12 @@ import { GoogleGenerativeAI } from "@google/generative-ai";
 import Const from "./Const";
 
 function App() {
-  const [csv1, setCsv1] = useState("");
   const [data1, setData1] = useState("");
+  const [data2, setData2] = useState("");
+  const [csv1, setCsv1] = useState("");
+  const [csv2, setCsv2] = useState("");
+  const [resize1, setResize1] = useState(1);
+  const [resize2, setResize2] = useState(1);
   // Access your API key as an environment variable (see "Set up your API key" above)
   const genAI = new GoogleGenerativeAI(Const.GEMINI_API_KEY);
 
@@ -43,20 +47,30 @@ function App() {
           csv1={csv1}
           setCsv1={setCsv1}
           fetchGemini={fetchGemini}
+          resize={resize1}
+          setResize={setResize1}
         />
         <FirstStep
           num={2}
-          data1={data1}
-          setData1={setData1}
-          csv1={csv1}
-          setCsv1={setCsv1}
+          data1={data2}
+          setData1={setData2}
+          csv1={csv2}
+          setCsv1={setCsv2}
           fetchGemini={fetchGemini}
+          resize={resize2}
+          setResize={setResize2}
         />
       </div>
       <br />
       <div id="integration" className="mb-4 bg-center">
         {/* <h2 className="block font-bold mb-2">レシピデータを統合する</h2> */}
-        <Integration csv1={csv1} setCsv1={setCsv1} fetchGemini={fetchGemini} />
+        <Integration
+          csv1={csv1}
+          csv2={csv2}
+          fetchGemini={fetchGemini}
+          resize1={resize1}
+          resize2={resize2}
+        />
       </div>
     </div>
   );
